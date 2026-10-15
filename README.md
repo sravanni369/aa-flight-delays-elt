@@ -79,8 +79,23 @@ the incremental model picked up only the reloaded month. The single warning is t
 
 Versions: Python 3.10.12, dbt-core 1.10.23, dbt-duckdb 1.11.0, DuckDB 1.5.6, Apache Airflow 2.10.5.
 
-## BigQuery target (not run yet)
+## BigQuery run (2026-10-15)
 
-`aa_delays/profiles.yml` has a `bq` target (OAuth). Requires `pip install dbt-bigquery`,
-`gcloud auth application-default login`, `GCP_PROJECT` set, and `raw.flights` loaded into BigQuery.
-Then `dbt build --profiles-dir . --target bq`. Not yet executed; no BigQuery results are claimed.
+Same dbt project, `--target bq`, on a free BigQuery sandbox project (`sravani-aa-delays`, US).
+`raw.flights` was loaded with `bq load` (explicit schema, `planned_dep_datetime` as DATETIME) into
+`raw.flights_csv`, then a CTAS added `_load_month` and `_loaded_at`: 899,527 rows.
+
+| Step | Result |
+|---|---|
+| `dbt build --target bq` | 6 models OK, 22 tests PASS, 1 WARN (`audit_naive_hhmm_date`, 3,363 rows), 0 ERROR (dbt line: `PASS=28 WARN=1 ERROR=0 TOTAL=29`) |
+| Bytes processed | `fct_flights` 97.8 MiB, `rpt_route_month_delays` 78.1 MiB, `dim_route` 15.4 MiB, `dim_airport` 8.6 MiB, `dim_date` 6.9 MiB |
+| `marts.fct_flights` | 899,527 rows, 180,794 arrived 15+ minutes late |
+
+Same numbers as DuckDB. No macro changes were needed: the existing `bigquery__iso_day_of_week`
+dispatch and dbt's cross-database `hash`, `concat`, `dateadd` and `date_trunc` covered the differences.
+In the log, the first count query fails because `rows` is a reserved word in BigQuery; it was rerun
+with the alias quoted.
+
+Versions: dbt-core 1.10.23, dbt-bigquery 1.12.1. Full log: `run_logs/dbt_build_bigquery.log`.
+
+![dbt build on BigQuery](run_logs/bigquery_run.png)

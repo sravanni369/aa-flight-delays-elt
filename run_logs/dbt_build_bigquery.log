@@ -1,0 +1,94 @@
+23:01:31  Running with dbt=1.10.23
+23:01:31  This version of dbt is deprecated and no longer receives regular patches, including for known bugs. We recommend upgrading to a newer supported version of dbt: https://docs.getdbt.com/docs/dbt-versions
+/home/sravani/aa_run/.venv-dbt/lib/python3.10/site-packages/google/api_core/_python_version_support.py:223: FutureWarning: You are using a non-supported Python version (3.10.19). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home/sravani/aa_run/.venv-dbt/lib/python3.10/site-packages/google/api_core/_python_version_support.py:223: FutureWarning: You are using a non-supported Python version (3.10.19). Google will not post any further updates to google.cloud.bigquery supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.cloud.bigquery.
+  warnings.warn(message, FutureWarning)
+/home/sravani/aa_run/.venv-dbt/lib/python3.10/site-packages/google/api_core/_python_version_support.py:223: FutureWarning: You are using a non-supported Python version (3.10.19). Google will not post any further updates to google.cloud.dataproc_v1 supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.cloud.dataproc_v1.
+  warnings.warn(message, FutureWarning)
+23:01:34  Registered adapter: bigquery=1.12.1
+23:01:35  Unable to do partial parsing because config vars, config profile, or config target have changed
+23:01:35  Unable to do partial parsing because profile has changed
+23:01:35  Unable to do partial parsing because a project dependency has been added
+23:01:37  Found 6 models, 23 data tests, 1 source, 568 macros
+23:01:37  
+23:01:37  Concurrency: 4 threads (target='bq')
+23:01:37  
+23:01:42  1 of 29 START sql view model staging.stg_flights ............................... [RUN]
+23:01:44  1 of 29 OK created sql view model staging.stg_flights .......................... [CREATE VIEW (0 processed) in 1.57s]
+23:01:44  2 of 29 START test assert_actual_dep_matches_clock ............................. [RUN]
+23:01:44  3 of 29 START test audit_naive_hhmm_date ....................................... [RUN]
+23:01:44  4 of 29 START test not_null_stg_flights_actual_dep_ts .......................... [RUN]
+23:01:44  5 of 29 START test not_null_stg_flights_flight_key ............................. [RUN]
+23:01:46  5 of 29 PASS not_null_stg_flights_flight_key ................................... [PASS in 1.86s]
+23:01:46  4 of 29 PASS not_null_stg_flights_actual_dep_ts ................................ [PASS in 1.87s]
+23:01:46  3 of 29 WARN 3363 audit_naive_hhmm_date ........................................ [WARN 3363 in 1.87s]
+23:01:46  6 of 29 START test unique_stg_flights_flight_key ............................... [RUN]
+23:01:46  7 of 29 START test within_range_stg_flights_dep_delay_min__2880___120 .......... [RUN]
+23:01:46  8 of 29 START test within_range_stg_flights_distance_mi__6000__1 ............... [RUN]
+23:01:46  2 of 29 PASS assert_actual_dep_matches_clock ................................... [PASS in 2.11s]
+23:01:46  9 of 29 START test within_range_stg_flights_taxi_out_min__300__0 ............... [RUN]
+23:01:47  7 of 29 PASS within_range_stg_flights_dep_delay_min__2880___120 ................ [PASS in 1.56s]
+23:01:47  8 of 29 PASS within_range_stg_flights_distance_mi__6000__1 ..................... [PASS in 1.76s]
+23:01:47  9 of 29 PASS within_range_stg_flights_taxi_out_min__300__0 ..................... [PASS in 1.61s]
+23:01:48  6 of 29 PASS unique_stg_flights_flight_key ..................................... [PASS in 1.94s]
+23:01:48  10 of 29 START sql table model marts.dim_airport ............................... [RUN]
+23:01:48  11 of 29 START sql table model marts.dim_date .................................. [RUN]
+23:01:48  12 of 29 START sql table model marts.dim_route ................................. [RUN]
+23:01:48  13 of 29 START sql incremental model marts.fct_flights ......................... [RUN]
+23:01:50  10 of 29 OK created sql table model marts.dim_airport .......................... [CREATE TABLE (110.0 rows, 8.6 MiB processed) in 2.79s]
+23:01:50  14 of 29 START test not_null_dim_airport_airport_code .......................... [RUN]
+23:01:51  11 of 29 OK created sql table model marts.dim_date ............................. [CREATE TABLE (365.0 rows, 6.9 MiB processed) in 3.28s]
+23:01:51  15 of 29 START test unique_dim_airport_airport_code ............................ [RUN]
+23:01:51  12 of 29 OK created sql table model marts.dim_route ............................ [CREATE TABLE (815.0 rows, 15.4 MiB processed) in 3.39s]
+23:01:51  16 of 29 START test accepted_values_dim_date_iso_day_of_week__False__1__2__3__4__5__6__7  [RUN]
+23:01:52  14 of 29 PASS not_null_dim_airport_airport_code ................................ [PASS in 1.80s]
+23:01:52  17 of 29 START test not_null_dim_date_date_day ................................. [RUN]
+23:01:52  15 of 29 PASS unique_dim_airport_airport_code .................................. [PASS in 1.44s]
+23:01:52  18 of 29 START test unique_dim_date_date_day ................................... [RUN]
+23:01:53  16 of 29 PASS accepted_values_dim_date_iso_day_of_week__False__1__2__3__4__5__6__7  [PASS in 1.52s]
+23:01:53  19 of 29 START test not_null_dim_route_route_key ............................... [RUN]
+23:01:54  17 of 29 PASS not_null_dim_date_date_day ....................................... [PASS in 1.28s]
+23:01:54  20 of 29 START test unique_dim_route_route_key ................................. [RUN]
+23:01:54  18 of 29 PASS unique_dim_date_date_day ......................................... [PASS in 1.23s]
+23:01:54  19 of 29 PASS not_null_dim_route_route_key ..................................... [PASS in 1.31s]
+23:01:55  20 of 29 PASS unique_dim_route_route_key ....................................... [PASS in 1.33s]
+23:01:59  13 of 29 OK created sql incremental model marts.fct_flights .................... [CREATE TABLE (899.5k rows, 97.8 MiB processed) in 10.85s]
+23:01:59  21 of 29 START test assert_delay_causes_sum_to_arr_delay ....................... [RUN]
+23:01:59  22 of 29 START test assert_fct_reconciles_to_raw ............................... [RUN]
+23:01:59  23 of 29 START test not_null_fct_flights_flight_key ............................ [RUN]
+23:01:59  24 of 29 START test relationships_fct_flights_dest_airport__airport_code__ref_dim_airport_  [RUN]
+23:02:00  21 of 29 PASS assert_delay_causes_sum_to_arr_delay ............................. [PASS in 1.63s]
+23:02:00  25 of 29 START test relationships_fct_flights_flight_date__date_day__ref_dim_date_  [RUN]
+23:02:00  23 of 29 PASS not_null_fct_flights_flight_key .................................. [PASS in 1.64s]
+23:02:00  22 of 29 PASS assert_fct_reconciles_to_raw ..................................... [PASS in 1.67s]
+23:02:00  26 of 29 START test relationships_fct_flights_origin_airport__airport_code__ref_dim_airport_  [RUN]
+23:02:00  27 of 29 START test relationships_fct_flights_route_key__route_key__ref_dim_route_  [RUN]
+23:02:01  24 of 29 PASS relationships_fct_flights_dest_airport__airport_code__ref_dim_airport_  [PASS in 2.54s]
+23:02:01  28 of 29 START test unique_fct_flights_flight_key .............................. [RUN]
+23:02:02  26 of 29 PASS relationships_fct_flights_origin_airport__airport_code__ref_dim_airport_  [PASS in 1.31s]
+23:02:02  27 of 29 PASS relationships_fct_flights_route_key__route_key__ref_dim_route_ ... [PASS in 1.37s]
+23:02:02  25 of 29 PASS relationships_fct_flights_flight_date__date_day__ref_dim_date_ ... [PASS in 1.73s]
+23:02:03  28 of 29 PASS unique_fct_flights_flight_key .................................... [PASS in 2.25s]
+23:02:03  29 of 29 START sql table model marts.rpt_route_month_delays .................... [RUN]
+23:02:06  29 of 29 OK created sql table model marts.rpt_route_month_delays ............... [CREATE TABLE (8.2k rows, 78.1 MiB processed) in 2.74s]
+23:02:07  
+23:02:07  Finished running 1 incremental model, 4 table models, 23 data tests, 1 view model in 0 hours 0 minutes and 29.52 seconds (29.52s).
+23:02:07  
+23:02:07  Completed with 1 warning:
+23:02:07  
+23:02:07  Warning in test audit_naive_hhmm_date (tests/audit_naive_hhmm_date.sql)
+23:02:07  Got 3363 results, configured to warn if != 0
+23:02:07  
+23:02:07    compiled code at target/compiled/aa_delays/tests/audit_naive_hhmm_date.sql
+23:02:07  
+23:02:07  Done. PASS=28 WARN=1 ERROR=0 SKIP=0 NO-OP=0 TOTAL=29
+Error in query string: Error processing job 'sravani-aa-
+delays:bqjob_r73e0dc6fd6b68d6e_000001a141cd47df_1': Syntax error: Expected end
+of input but got keyword ROWS at [1:17]
+$ bq query --use_legacy_sql=false "select count(*) `rows`, countif(is_arr_delayed_15) delayed_15 from marts.fct_flights"
++--------+------------+
+|  rows  | delayed_15 |
++--------+------------+
+| 899527 |     180794 |
++--------+------------+
