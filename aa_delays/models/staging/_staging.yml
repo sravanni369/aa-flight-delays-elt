@@ -1,0 +1,23 @@
+version: 2
+models:
+  - name: stg_flights
+    description: Typed, renamed flight legs with surrogate keys and a midnight-safe actual departure timestamp.
+    columns:
+      - name: flight_key
+        description: md5 of fl_num | origin | scheduled departure.
+        data_tests: [unique, not_null]
+      - name: actual_dep_ts
+        description: sched_dep_ts + dep_delay_min. Correct across midnight, unlike flight_date + dep_time.
+        data_tests: [not_null]
+      - name: dep_delay_min
+        data_tests:
+          - within_range:
+              arguments: {min_value: -120, max_value: 2880}
+      - name: taxi_out_min
+        data_tests:
+          - within_range:
+              arguments: {min_value: 0, max_value: 300}
+      - name: distance_mi
+        data_tests:
+          - within_range:
+              arguments: {min_value: 1, max_value: 6000}

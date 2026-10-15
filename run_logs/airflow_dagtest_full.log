@@ -1,0 +1,115 @@
+{subprocess.py:78} INFO - Tmp dir root location: ~/tmp
+{subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', '~/python "<repo>/../aa-flight-delays-elt/ingest/load_raw.py" --all']
+{subprocess.py:99} INFO - Output:
+{subprocess.py:106} INFO - loaded 2018-01: 72,014 rows
+{subprocess.py:106} INFO - loaded 2018-02: 67,361 rows
+{subprocess.py:106} INFO - loaded 2018-03: 75,602 rows
+{subprocess.py:106} INFO - loaded 2018-04: 73,767 rows
+{subprocess.py:106} INFO - loaded 2018-05: 76,751 rows
+{subprocess.py:106} INFO - loaded 2018-06: 76,712 rows
+{subprocess.py:106} INFO - loaded 2018-07: 78,598 rows
+{subprocess.py:106} INFO - loaded 2018-08: 78,692 rows
+{subprocess.py:106} INFO - loaded 2018-09: 73,452 rows
+{subprocess.py:106} INFO - loaded 2018-10: 78,092 rows
+{subprocess.py:106} INFO - loaded 2018-11: 73,935 rows
+{subprocess.py:106} INFO - loaded 2018-12: 74,551 rows
+{subprocess.py:106} INFO - raw.flights total: 899,527
+{subprocess.py:110} INFO - Command exited with return code 0
+{taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=aa_delays_elt, task_id=load_raw, run_id=manual__2026-10-15T00:00:00+00:00, execution_date=20261015T000000, start_date=, end_date=20261015T215732
+{subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', '~/dbt run --project-dir "<repo>/../aa-flight-delays-elt/aa_delays" --profiles-dir "<repo>/../aa-flight-delays-elt/aa_delays" --no-use-colors']
+{subprocess.py:106} INFO - 21:57:33  Running with dbt=1.10.23
+{subprocess.py:106} INFO - 21:57:33  This version of dbt is deprecated and no longer receives regular patches, including for known bugs. We recommend upgrading to a newer supported version of dbt: https://docs.getdbt.com/docs/dbt-versions
+{subprocess.py:106} INFO - 21:57:34  Registered adapter: duckdb=1.11.0
+{subprocess.py:106} INFO - 21:57:34  Unable to do partial parsing because an error occurred. Switching to full reparse.
+{subprocess.py:106} INFO - 21:57:36  Found 6 models, 23 data tests, 1 source, 507 macros
+{subprocess.py:106} INFO - 21:57:36
+{subprocess.py:106} INFO - 21:57:36  Concurrency: 2 threads (target='dev')
+{subprocess.py:106} INFO - 21:57:37  1 of 6 START sql view model staging.stg_flights ................................ [RUN]
+{subprocess.py:106} INFO - 21:57:37  1 of 6 OK created sql view model staging.stg_flights ........................... [OK in 0.21s]
+{subprocess.py:106} INFO - 21:57:37  2 of 6 START sql table model marts.dim_airport ................................. [RUN]
+{subprocess.py:106} INFO - 21:57:37  3 of 6 START sql table model marts.dim_date .................................... [RUN]
+{subprocess.py:106} INFO - 21:57:37  2 of 6 OK created sql table model marts.dim_airport ............................ [OK in 0.32s]
+{subprocess.py:106} INFO - 21:57:37  3 of 6 OK created sql table model marts.dim_date ............................... [OK in 0.33s]
+{subprocess.py:106} INFO - 21:57:37  4 of 6 START sql table model marts.dim_route ................................... [RUN]
+{subprocess.py:106} INFO - 21:57:37  5 of 6 START sql incremental model marts.fct_flights ........................... [RUN]
+{subprocess.py:106} INFO - 21:57:38  4 of 6 OK created sql table model marts.dim_route .............................. [OK in 0.50s]
+{subprocess.py:106} INFO - 21:57:39  5 of 6 OK created sql incremental model marts.fct_flights ...................... [OK in 1.88s]
+{subprocess.py:106} INFO - 21:57:39  6 of 6 START sql table model marts.rpt_route_month_delays ...................... [RUN]
+{subprocess.py:106} INFO - 21:57:40  6 of 6 OK created sql table model marts.rpt_route_month_delays ................. [OK in 0.23s]
+{subprocess.py:106} INFO - 21:57:40
+{subprocess.py:106} INFO - 21:57:40  Finished running 1 incremental model, 4 table models, 1 view model in 0 hours 0 minutes and 3.18 seconds (3.18s).
+{subprocess.py:106} INFO - 21:57:40  Completed successfully
+{subprocess.py:106} INFO - 21:57:40  Done. PASS=6 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=6
+{taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=aa_delays_elt, task_id=dbt_run, run_id=manual__2026-10-15T00:00:00+00:00, execution_date=20261015T000000, start_date=, end_date=20261015T215741
+{subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', '~/dbt test --project-dir "<repo>/../aa-flight-delays-elt/aa_delays" --profiles-dir "<repo>/../aa-flight-delays-elt/aa_delays" --no-use-colors']
+{subprocess.py:106} INFO - 21:57:42  Running with dbt=1.10.23
+{subprocess.py:106} INFO - 21:57:42  This version of dbt is deprecated and no longer receives regular patches, including for known bugs. We recommend upgrading to a newer supported version of dbt: https://docs.getdbt.com/docs/dbt-versions
+{subprocess.py:106} INFO - 21:57:42  Registered adapter: duckdb=1.11.0
+{subprocess.py:106} INFO - 21:57:43  Found 6 models, 23 data tests, 1 source, 507 macros
+{subprocess.py:106} INFO - 21:57:43
+{subprocess.py:106} INFO - 21:57:43  Concurrency: 2 threads (target='dev')
+{subprocess.py:106} INFO - 21:57:43  1 of 23 START test accepted_values_dim_date_iso_day_of_week__False__1__2__3__4__5__6__7  [RUN]
+{subprocess.py:106} INFO - 21:57:43  2 of 23 START test assert_actual_dep_matches_clock ............................. [RUN]
+{subprocess.py:106} INFO - 21:57:44  1 of 23 PASS accepted_values_dim_date_iso_day_of_week__False__1__2__3__4__5__6__7  [PASS in 0.18s]
+{subprocess.py:106} INFO - 21:57:44  3 of 23 START test assert_delay_causes_sum_to_arr_delay ........................ [RUN]
+{subprocess.py:106} INFO - 21:57:44  2 of 23 PASS assert_actual_dep_matches_clock ................................... [PASS in 0.22s]
+{subprocess.py:106} INFO - 21:57:44  4 of 23 START test assert_fct_reconciles_to_raw ................................ [RUN]
+{subprocess.py:106} INFO - 21:57:44  3 of 23 PASS assert_delay_causes_sum_to_arr_delay .............................. [PASS in 0.16s]
+{subprocess.py:106} INFO - 21:57:44  5 of 23 START test audit_naive_hhmm_date ....................................... [RUN]
+{subprocess.py:106} INFO - 21:57:44  4 of 23 PASS assert_fct_reconciles_to_raw ...................................... [PASS in 0.15s]
+{subprocess.py:106} INFO - 21:57:44  6 of 23 START test not_null_dim_airport_airport_code ........................... [RUN]
+{subprocess.py:106} INFO - 21:57:44  6 of 23 PASS not_null_dim_airport_airport_code ................................. [PASS in 0.09s]
+{subprocess.py:106} INFO - 21:57:44  5 of 23 WARN 3363 audit_naive_hhmm_date ........................................ [WARN 3363 in 0.19s]
+{subprocess.py:106} INFO - 21:57:44  7 of 23 START test not_null_dim_date_date_day .................................. [RUN]
+{subprocess.py:106} INFO - 21:57:44  8 of 23 START test not_null_dim_route_route_key ................................ [RUN]
+{subprocess.py:106} INFO - 21:57:44  7 of 23 PASS not_null_dim_date_date_day ........................................ [PASS in 0.15s]
+{subprocess.py:106} INFO - 21:57:44  8 of 23 PASS not_null_dim_route_route_key ...................................... [PASS in 0.14s]
+{subprocess.py:106} INFO - 21:57:44  9 of 23 START test not_null_fct_flights_flight_key ............................. [RUN]
+{subprocess.py:106} INFO - 21:57:44  10 of 23 START test not_null_stg_flights_actual_dep_ts ......................... [RUN]
+{subprocess.py:106} INFO - 21:57:44  9 of 23 PASS not_null_fct_flights_flight_key ................................... [PASS in 0.15s]
+{subprocess.py:106} INFO - 21:57:44  11 of 23 START test not_null_stg_flights_flight_key ............................ [RUN]
+{subprocess.py:106} INFO - 21:57:44  10 of 23 PASS not_null_stg_flights_actual_dep_ts ............................... [PASS in 0.20s]
+{subprocess.py:106} INFO - 21:57:44  12 of 23 START test relationships_fct_flights_dest_airport__airport_code__ref_dim_airport_  [RUN]
+{subprocess.py:106} INFO - 21:57:45  12 of 23 PASS relationships_fct_flights_dest_airport__airport_code__ref_dim_airport_  [PASS in 0.19s]
+{subprocess.py:106} INFO - 21:57:45  13 of 23 START test relationships_fct_flights_flight_date__date_day__ref_dim_date_  [RUN]
+{subprocess.py:106} INFO - 21:57:45  11 of 23 PASS not_null_stg_flights_flight_key .................................. [PASS in 0.48s]
+{subprocess.py:106} INFO - 21:57:45  14 of 23 START test relationships_fct_flights_origin_airport__airport_code__ref_dim_airport_  [RUN]
+{subprocess.py:106} INFO - 21:57:45  13 of 23 PASS relationships_fct_flights_flight_date__date_day__ref_dim_date_ ... [PASS in 0.55s]
+{subprocess.py:106} INFO - 21:57:45  15 of 23 START test relationships_fct_flights_route_key__route_key__ref_dim_route_  [RUN]
+{subprocess.py:106} INFO - 21:57:45  14 of 23 PASS relationships_fct_flights_origin_airport__airport_code__ref_dim_airport_  [PASS in 0.21s]
+{subprocess.py:106} INFO - 21:57:45  16 of 23 START test unique_dim_airport_airport_code ............................ [RUN]
+{subprocess.py:106} INFO - 21:57:45  15 of 23 PASS relationships_fct_flights_route_key__route_key__ref_dim_route_ ... [PASS in 0.20s]
+{subprocess.py:106} INFO - 21:57:45  17 of 23 START test unique_dim_date_date_day ................................... [RUN]
+{subprocess.py:106} INFO - 21:57:45  16 of 23 PASS unique_dim_airport_airport_code .................................. [PASS in 0.17s]
+{subprocess.py:106} INFO - 21:57:45  18 of 23 START test unique_dim_route_route_key ................................. [RUN]
+{subprocess.py:106} INFO - 21:57:46  17 of 23 PASS unique_dim_date_date_day ......................................... [PASS in 0.17s]
+{subprocess.py:106} INFO - 21:57:46  19 of 23 START test unique_fct_flights_flight_key .............................. [RUN]
+{subprocess.py:106} INFO - 21:57:46  18 of 23 PASS unique_dim_route_route_key ....................................... [PASS in 0.15s]
+{subprocess.py:106} INFO - 21:57:46  20 of 23 START test unique_stg_flights_flight_key .............................. [RUN]
+{subprocess.py:106} INFO - 21:57:46  19 of 23 PASS unique_fct_flights_flight_key .................................... [PASS in 0.30s]
+{subprocess.py:106} INFO - 21:57:46  21 of 23 START test within_range_stg_flights_dep_delay_min__2880___120 ......... [RUN]
+{subprocess.py:106} INFO - 21:57:46  21 of 23 PASS within_range_stg_flights_dep_delay_min__2880___120 ............... [PASS in 0.12s]
+{subprocess.py:106} INFO - 21:57:46  22 of 23 START test within_range_stg_flights_distance_mi__6000__1 .............. [RUN]
+{subprocess.py:106} INFO - 21:57:46  22 of 23 PASS within_range_stg_flights_distance_mi__6000__1 .................... [PASS in 0.10s]
+{subprocess.py:106} INFO - 21:57:46  23 of 23 START test within_range_stg_flights_taxi_out_min__300__0 .............. [RUN]
+{subprocess.py:106} INFO - 21:57:46  23 of 23 PASS within_range_stg_flights_taxi_out_min__300__0 .................... [PASS in 0.09s]
+{subprocess.py:106} INFO - 21:57:46  20 of 23 PASS unique_stg_flights_flight_key .................................... [PASS in 0.62s]
+{subprocess.py:106} INFO - 21:57:46
+{subprocess.py:106} INFO - 21:57:46  Finished running 23 data tests in 0 hours 0 minutes and 3.06 seconds (3.06s).
+{subprocess.py:106} INFO - 21:57:47
+{subprocess.py:106} INFO - 21:57:47  Completed with 1 warning:
+{subprocess.py:106} INFO - 21:57:47  Warning in test audit_naive_hhmm_date (tests/audit_naive_hhmm_date.sql)
+{subprocess.py:106} INFO - 21:57:47  Got 3363 results, configured to warn if != 0
+{subprocess.py:106} INFO - 21:57:47    compiled code at target/compiled/aa_delays/tests/audit_naive_hhmm_date.sql
+{subprocess.py:106} INFO - 21:57:47  Done. PASS=22 WARN=1 ERROR=0 SKIP=0 NO-OP=0 TOTAL=23
+{taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=aa_delays_elt, task_id=dbt_test, run_id=manual__2026-10-15T00:00:00+00:00, execution_date=20261015T000000, start_date=, end_date=20261015T215747
+{subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', '~/dbt docs generate --project-dir "<repo>/../aa-flight-delays-elt/aa_delays" --profiles-dir "<repo>/../aa-flight-delays-elt/aa_delays" --no-use-colors']
+{subprocess.py:106} INFO - 21:57:48  Running with dbt=1.10.23
+{subprocess.py:106} INFO - 21:57:48  This version of dbt is deprecated and no longer receives regular patches, including for known bugs. We recommend upgrading to a newer supported version of dbt: https://docs.getdbt.com/docs/dbt-versions
+{subprocess.py:106} INFO - 21:57:49  Registered adapter: duckdb=1.11.0
+{subprocess.py:106} INFO - 21:57:49  Found 6 models, 23 data tests, 1 source, 507 macros
+{subprocess.py:106} INFO - 21:57:49
+{subprocess.py:106} INFO - 21:57:49  Concurrency: 2 threads (target='dev')
+{subprocess.py:106} INFO - 21:57:51  Building catalog
+{subprocess.py:106} INFO - 21:57:51  Catalog written to <repo>/../aa-flight-delays-elt/aa_delays/target/catalog.json
+{taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=aa_delays_elt, task_id=dbt_docs, run_id=manual__2026-10-15T00:00:00+00:00, execution_date=20261015T000000, start_date=, end_date=20261015T215752

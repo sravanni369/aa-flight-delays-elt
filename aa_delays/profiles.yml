@@ -1,0 +1,14 @@
+aa_delays:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('AA_DUCKDB_PATH', '../warehouse/aa.duckdb') }}"
+      threads: 2
+    bq:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT', 'set-GCP_PROJECT') }}"
+      dataset: aa_delays
+      location: US
+      threads: 4

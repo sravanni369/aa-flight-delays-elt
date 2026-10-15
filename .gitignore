@@ -1,0 +1,10 @@
+data/
+warehouse/
+aa_delays/target/
+aa_delays/logs/
+aa_delays/dbt_packages/
+airflow_home/
+__pycache__/
+*.duckdb
+*.duckdb.wal
+aa_delays/.user.yml

@@ -1,0 +1,11 @@
+version: 2
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: flights
+        description: >
+          American Airlines 2018 domestic flights, loaded month by month by ingest/load_raw.py.
+          Source: datasets/aa-domestic-delays-2018.csv.zip from the code repository of
+          "Interpretable Machine Learning with Python" (Serg Masís), Chapter 3.
+        loaded_at_field: _loaded_at
